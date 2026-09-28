@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class="is-locked">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nissan GT-R R35 — Nova Motors</title>
+  <meta name="description" content="An interactive, scroll-driven launch experience for the Nissan GT-R R35.">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Loading screen -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <div class="loader__top">
+      <p class="loader__brand">NOVA MOTORS</p>
+      <p class="loader__sub">LOADING EXPERIENCE</p>
+    </div>
+    <p class="loader__error" id="loader-error" hidden></p>
+    <div class="loader__count" aria-label="Loading progress">
+      <span id="loader-pct">0</span><small>%</small>
+    </div>
+    <div class="loader__bar"><i id="loader-bar"></i></div>
+  </div>
+
+  <!-- One persistent WebGL canvas -->
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <span class="topbar__brand">Nova Motors</span>
+    <span class="topbar__model">GT-R R35</span>
+  </header>
+
+  <aside class="hud" aria-label="Section progress">
+    <div class="counter">
+      <span class="counter__cur"><span id="count-cur">01</span></span>
+      <span class="counter__sep"> / </span>
+      <span>05</span>
+    </div>
+    <div class="rail"><i id="rail-fill"></i></div>
+  </aside>
+
+  <div class="cue" id="cue" aria-hidden="true">
+    <span>Scroll</span>
+    <i></i>
+  </div>
+
+  <main id="story">
+
+    <!-- 01 FRONT -->
+    <section class="section pos-left" id="front" aria-label="Front">
+      <div class="stick">
+        <div class="panel">
+          <h1 class="title reveal" style="--d:.15">THE ICON</h1>
+          <p class="lede reveal" style="--d:.35">An unmistakable silhouette engineered to dominate the road.</p>
+          <ul class="details reveal" style="--d:.55">
+            <li><b>Headlights</b><span>Narrow, low-set and impossible to mistake at night.</span></li>
+            <li><b>Front grille</b><span>A deep, wide mouth that feeds the twin-turbo V6.</span></li>
+            <li><b>Aggressive front bumper</b><span>Sculpted intakes that cut the air and hold the road.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 PERFORMANCE -->
+    <section class="section pos-left" id="performance" aria-label="Performance">
+      <div class="stick">
+        <div class="panel">
+          <h2 class="title">BUILT FOR<br>PERFORMANCE</h2>
+          <dl class="specs">
+            <div><dt>565<small>HP</small></dt><dd>Horsepower</dd></div>
+            <div><dt>3.8L</dt><dd>V6 engine</dd></div>
+            <div><dt>AWD</dt><dd>All-wheel drive</dd></div>
+            <div><dt class="specs__wide">Twin-Turbo</dt><dd>Forced induction</dd></div>
+          </dl>
+          <p class="lede">Large wheels, serious brakes and a body line that tells you what it does before it moves.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 SIDE PROFILE -->
+    <section class="section pos-right" id="profile" aria-label="Side profile">
+      <div class="stick">
+        <div class="panel">
+          <h2 class="title">FORM MEETS<br>FUNCTION</h2>
+          <ul class="details">
+            <li><b>Aerodynamic body lines</b><span>Every crease guides air along the body instead of against it.</span></li>
+            <li><b>Wide stance</b><span>Flared arches plant the car on the road.</span></li>
+            <li><b>Balanced proportions</b><span>Cabin set back, wheels pushed to the corners.</span></li>
+            <li><b>Performance-focused design</b><span>Nothing here is decoration. It all does a job.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 REAR (taller, panel stays pinned while the camera drops into the rear view) -->
+    <section class="section section--tall pos-left" id="rear" aria-label="Rear">
+      <div class="stick">
+        <div class="panel">
+          <h2 class="title">THE REAR</h2>
+          <p class="lede">The view most drivers get of it, and the one they remember.</p>
+          <ul class="details">
+            <li><b>Circular taillights</b><span>The round lamp signature, lit against the dark.</span></li>
+            <li><b>Rear diffuser</b><span>Manages the air leaving the underbody.</span></li>
+            <li><b>Exhaust</b><span>Four outlets, set low and wide.</span></li>
+            <li><b>Rear spoiler</b><span>Keeps the tail settled at speed.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 INTERIOR -->
+    <section class="section pos-left" id="interior" aria-label="Interior">
+      <div class="stick">
+        <div class="panel">
+          <h2 class="title">DRIVER<br>FOCUSED</h2>
+          <p class="lede">Step past the door and everything faces one person.</p>
+          <ul class="details">
+            <li><b>Steering wheel</b><span>Thick rim, short throw, controls at your thumbs.</span></li>
+            <li><b>Dashboard</b><span>A low, wide layout that keeps the road in view.</span></li>
+            <li><b>Driver's seat</b><span>Bolstered to hold you in place through the corners.</span></li>
+            <li><b>Instrument cluster</b><span>The information you need, directly ahead.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <noscript><p class="noscript">This experience needs JavaScript and WebGL.</p></noscript>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
