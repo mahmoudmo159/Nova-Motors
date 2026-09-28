@@ -1,0 +1,252 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NOVA MOTORS | Performance showroom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0b;--panel:#141416;--line:#ffffff1f;--tx:#f2eee6;--mut:#9a978f;--m:#c9c2b4}
+*{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font:400 clamp(38px,6vw,84px)/1 "Instrument Serif",Georgia,serif;letter-spacing:-.01em;margin:0}h2{font-size:clamp(32px,4.5vw,58px)}h3{font-size:28px}
+button,select,input,textarea{font:inherit;color:inherit}button{cursor:pointer;background:none;border:1px solid var(--line);padding:10px 16px;min-height:44px}
+select,input,textarea{background:#0f0f11;border:1px solid var(--line);padding:11px 12px;min-height:44px;width:100%;border-radius:0}
+:focus-visible{outline:2px solid var(--m);outline-offset:2px}a{color:inherit}
+#loader{position:fixed;inset:0;z-index:99;background:var(--bg);display:grid;place-content:center;gap:14px;text-align:center;transition:opacity .6s}#loader.done{opacity:0;pointer-events:none}
+#loader span{font:26px "Instrument Serif",serif;letter-spacing:.2em}#loader i{height:1px;background:var(--m);transform-origin:left;animation:ld 1.6s ease-in-out infinite}@keyframes ld{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+#nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 4vw;transition:background .3s}
+#nav.solid{background:#0a0a0bd9;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.logo{text-decoration:none;letter-spacing:.28em;font-size:14px;font-weight:600}
+#links{display:flex;gap:26px}#links a{text-decoration:none;font-size:14px;color:var(--m)}#links a:hover{color:#fff}
+.tools{display:flex;gap:8px}.tools button{border:0;padding:8px 10px;font-size:14px;min-height:40px}.tools b{font-weight:500;color:var(--mut);margin-left:3px}#burger{display:none}
+#q{position:absolute;right:4vw;top:100%;width:min(340px,92vw);display:none}#q.on{display:block}
+.intro{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 4vw 12vh}.intro p{color:var(--mut);max-width:34ch;margin:22px 0 0}
+#stage{height:480vh;position:relative}.sticky{position:sticky;top:0;height:100svh;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#232426,#0a0a0b 70%)}
+#gl{position:absolute;inset:0;width:100%;height:100%}#line{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}#line line{stroke:#fff9;stroke-width:1}
+#dot{position:absolute;width:16px;height:16px;margin:-8px;border:1px solid #fff;border-radius:50%;pointer-events:none;opacity:0;transition:opacity .3s}#dot:after{content:"";position:absolute;inset:5px;background:#fff;border-radius:50%}
+#panel{position:absolute;left:4vw;bottom:9vh;width:min(340px,86vw);padding:20px;background:#141416cc;backdrop-filter:blur(12px);border:1px solid var(--line);opacity:0;transform:translateY(12px);transition:.4s}
+#panel.on{opacity:1;transform:none}#panel h2{font-size:32px}#panel p{color:var(--m);margin:8px 0 10px;font-size:15px}#panel span{font-size:13px;color:var(--mut)}
+.meter{position:absolute;right:4vw;top:50%;height:120px;width:2px;background:#fff2;transform:translateY(-50%)}.meter i{display:block;width:100%;height:0;background:#fff}
+.wrap{padding:clamp(70px,10vw,140px) 4vw;max-width:1500px;margin:0 auto}.head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:34px}.head p{color:var(--mut);margin:0}
+.bar{display:flex;justify-content:space-between;gap:10px;margin-bottom:18px}.bar select{width:auto}#ftoggle{display:none}
+.layout{display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:start}.filters{display:grid;gap:16px;position:sticky;top:80px}.filters label,#fin label,#td label{display:grid;gap:6px;font-size:14px;color:var(--m)}.filters output{float:right}#fclose{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:28px 22px}
+.card{display:flex;flex-direction:column;gap:12px}.ph{aspect-ratio:16/10;position:relative;overflow:hidden;background:linear-gradient(135deg,hsl(var(--h) 12% 20%),hsl(var(--h) 8% 8%));display:flex;align-items:end;padding:14px;border:1px solid var(--line)}
+.ph em{font:italic 34px "Instrument Serif",serif;opacity:.85}.ph small{position:absolute;top:12px;left:14px;color:var(--mut);font-size:12px}
+.card h3{font-size:26px}.card .m{color:var(--mut);font-size:14px;display:flex;justify-content:space-between}.card .sp{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 12px;font-size:14px;color:var(--m);border-top:1px solid var(--line);padding-top:10px}
+.card .pr{font-size:20px;font-weight:600}.row{display:flex;gap:8px}.row button{flex:1;padding:8px;font-size:14px}.row .on,.btn{background:var(--tx);color:#000;border-color:var(--tx)}.btn{padding:12px 22px;font-weight:600}
+.brands{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}.brands button{border:0;background:var(--bg);min-height:110px;font:28px "Instrument Serif",serif;letter-spacing:.02em}.brands button:hover{background:var(--panel)}
+.strip{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 4vw 20px}.strip .ph{flex:0 0 min(78vw,560px);aspect-ratio:4/5;scroll-snap-align:start;cursor:pointer}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:6vw}.two p{color:var(--m);max-width:52ch}
+#fin,#td{display:grid;grid-template-columns:1fr 1fr;gap:16px}#fin dl{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:8px 0 0;border-top:1px solid var(--line);padding-top:18px}#fin dt{font-size:13px;color:var(--mut)}#fin dd{margin:0;font:34px "Instrument Serif",serif}
+.full{grid-column:1/-1}.err{color:#e59a8a;font-size:13px;min-height:0}#td-ok{border:1px solid var(--line);padding:30px}
+.cols{display:grid;grid-template-columns:1fr 1.2fr;gap:6vw}#map{min-height:280px;border:1px solid var(--line);display:grid;place-items:center;color:var(--mut);background:repeating-linear-gradient(45deg,#101012,#101012 12px,#0d0d0f 12px,#0d0d0f 24px)}.soc a{margin-right:14px}footer small{display:block;margin-top:50px;color:var(--mut)}
+dialog{background:var(--bg);color:var(--tx);border:1px solid var(--line);width:min(1100px,96vw);max-height:92vh;padding:clamp(18px,3vw,40px);overflow:auto}dialog::backdrop{background:#000c}#dx{position:sticky;top:0;float:right;z-index:2;background:var(--bg)}
+.det{display:grid;grid-template-columns:1.3fr 1fr;gap:34px;margin-top:20px}.gal .ph{aspect-ratio:16/10;cursor:zoom-in}.gal .ph.z{cursor:zoom-out}.gal .ph.z em{transform:scale(1.8);transform-origin:left bottom}.gal .ph em{transition:transform .4s}
+.th{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}.th button{padding:0;aspect-ratio:16/10;font-size:12px;color:var(--m)}.th .on{border-color:#fff}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--mut);font-weight:400}.scroll{overflow-x:auto}.scroll table{min-width:560px}
+ul.f{padding-left:18px;color:var(--m)}.det .row{flex-wrap:wrap}.det .row button{flex:1 1 140px}
+@media(max-width:900px){#links{position:fixed;inset:0 0 auto 0;top:58px;background:#0a0a0bf5;flex-direction:column;padding:20px 4vw 30px;display:none}#links.open{display:flex}#links a{font-size:24px;font-family:"Instrument Serif",serif}
+#burger{display:block}.tools [data-act=search]{display:none}#q{display:block;position:static;grid-column:1/-1}#nav{flex-wrap:wrap}#q:not(.on){display:none}
+.layout{grid-template-columns:1fr}#ftoggle{display:block}.filters{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:60;background:var(--panel);border-top:1px solid var(--line);padding:20px 5vw 28px;max-height:78vh;overflow:auto;transform:translateY(105%);transition:.35s}.filters.open{transform:none}#fclose{display:block}
+.two,.cols,.det{grid-template-columns:1fr}#fin,#td{grid-template-columns:1fr}#fin dl{grid-template-columns:1fr}.head{flex-direction:column;align-items:start}
+#panel{left:3vw;right:3vw;width:auto;bottom:4vh;padding:14px}#panel h2{font-size:26px}#panel p{font-size:14px;margin:4px 0 6px}.meter{display:none}.tools b{display:none}.tools button{padding:8px 6px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+</head><body>
+<div id="loader"><span>Nova Motors</span><i></i></div>
+<header id="nav"><a class="logo" href="#home">NOVA MOTORS</a>
+<nav id="links"><a href="#home">Home</a><a href="#inventory">Inventory</a><a href="#brands">Brands</a><a href="#collection">Collections</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+<div class="tools"><button data-act="search" aria-label="Search">Search</button><button data-act="favs">Favorites <b id="nf">0</b></button><button data-act="cmp">Compare <b id="nc">0</b></button><button id="burger" aria-label="Menu">Menu</button></div>
+<input id="q" type="search" placeholder="Search make or model" aria-label="Search inventory"></header>
+
+<section id="home" class="intro"><h1>The R35,<br>seen from every side.</h1><p>Scroll to turn the car. Details appear where you look.</p></section>
+<section id="stage"><div class="sticky"><canvas id="gl"></canvas>
+<svg id="line"><line x1="0" y1="0" x2="0" y2="0"/></svg><div id="dot"></div>
+<aside id="panel"><h2></h2><p></p><span></span></aside>
+<div class="meter"><i id="meter"></i></div></div></section>
+
+<section id="inventory" class="wrap"><div class="head"><h2>Inventory</h2><p id="count"></p></div>
+<div class="bar"><button id="ftoggle">Filters</button><select id="sort" aria-label="Sort"><option value="new">Newest</option><option value="lo">Price, low to high</option><option value="hi">Price, high to low</option><option value="hp">Highest horsepower</option></select></div>
+<div class="layout"><form id="filters" class="filters"><button type="button" id="fclose">Done</button>
+<label>Brand<select id="f-brand"></select></label><label>Body type<select id="f-body"></select></label><label>Fuel<select id="f-fuel"></select></label><label>Transmission<select id="f-trans"></select></label>
+<label>Year, from<select id="f-year"></select></label>
+<label>Max price <output id="o-price"></output><input type="range" id="f-price" min="50000" max="350000" step="5000" value="350000"></label>
+<label>Min horsepower <output id="o-hp"></output><input type="range" id="f-hp" min="300" max="850" step="10" value="300"></label>
+<button type="reset" id="freset">Reset</button></form><div id="grid" class="grid"></div></div></section>
+
+<section id="brands" class="wrap"><div class="head"><h2>Brands</h2></div><div id="brandrow" class="brands"></div></section>
+
+<section id="collection"><div class="wrap head"><h2>The Performance Collection</h2><p>Six cars picked for how they drive, not how they photograph.</p></div><div id="strip" class="strip"></div></section>
+
+<section id="about" class="wrap two"><h2>A showroom for people who read spec sheets.</h2><div><p>Nova Motors sells fewer cars than a dealership and knows more about each one. Every vehicle is inspected on a lift, driven by our technicians and documented before it is listed.</p><p>We keep service history, tyre wear and paint readings with the car. If we would not drive it ourselves, it does not go on the floor.</p></div></section>
+
+<section id="finance" class="wrap two"><div><h2>Finance calculator</h2><p>Estimate a monthly payment. Figures update as you type.</p></div>
+<form id="fin"><label>Vehicle<select id="fin-car"></select></label><label>Price ($)<input type="number" id="fin-price" min="0"></label><label>Down payment ($)<input type="number" id="fin-down" value="30000" min="0"></label>
+<label>Duration <select id="fin-term"><option>24</option><option>36</option><option selected>48</option><option>60</option><option>72</option></select> months</label><label>Interest rate (%)<input type="number" id="fin-rate" value="5.9" step=".1" min="0"></label>
+<dl id="fin-out"><div><dt>Monthly payment</dt><dd id="r-m"></dd></div><div><dt>Total payment</dt><dd id="r-t"></dd></div><div><dt>Total interest</dt><dd id="r-i"></dd></div></dl></form></section>
+
+<section id="drive" class="wrap two"><div><h2>Request a test drive</h2><p>We confirm by email within one working day.</p></div>
+<form id="td" novalidate><label>Name<input name="name" autocomplete="name"></label><label>Email<input name="email" type="email" autocomplete="email"></label><label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+<label>Vehicle<select name="car" id="td-car"></select></label><label>Preferred date<input name="date" type="date"></label><label>Preferred time<select name="time"><option value="">Select</option><option>09:00</option><option>11:00</option><option>13:00</option><option>15:00</option><option>17:00</option></select></label>
+<label class="full">Message<textarea name="msg" rows="3"></textarea></label><button class="btn">Request test drive</button></form>
+<div id="td-ok" hidden><h3>Request received</h3><p></p></div></section>
+
+<footer id="contact" class="wrap"><div class="cols"><div><h2>Visit the showroom</h2><p>14 Foundry Lane<br>Harbour District<br>Open Mon to Sat, 9:00 to 18:00</p><p>+1 (555) 014 2035<br>sales@novamotors.example</p><p class="soc"><a href="#">Instagram</a> <a href="#">YouTube</a> <a href="#">X</a></p></div>
+<div id="map" role="img" aria-label="Map placeholder">Google Maps embed goes here</div></div><small>Nova Motors. Sample inventory for demonstration.</small></footer>
+<dialog id="dlg"><button id="dx" aria-label="Close">Close</button><div id="dbody"></div></dialog>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+// Add vehicles here: the inventory, brands, compare and finance all read from this list.
+const CARS=[
+{id:'gtr',brand:'Nissan',model:'GT-R R35 Nismo',year:2022,km:8400,hp:600,trans:'Automatic',fuel:'Petrol',body:'Coupe',price:238000,zero:2.9,engine:'3.8L twin-turbo V6',drive:'AWD',hue:8,features:['Carbon roof and fenders','Recaro seats','Titanium exhaust','Brembo carbon-ceramic brakes'],interactive:true},
+{id:'911',brand:'Porsche',model:'911 Turbo S',year:2023,km:5200,hp:640,trans:'PDK',fuel:'Petrol',body:'Coupe',price:246500,zero:2.7,engine:'3.7L twin-turbo flat-six',drive:'AWD',hue:210,features:['Sport Chrono','PCCB brakes','Rear-axle steering','Bose surround sound']},
+{id:'m4',brand:'BMW',model:'M4 Competition',year:2023,km:9800,hp:503,trans:'Automatic',fuel:'Petrol',body:'Coupe',price:96800,zero:3.5,engine:'3.0L twin-turbo inline-six',drive:'AWD',hue:225,features:['M carbon bucket seats','M Drive Professional','Head-up display','Adaptive M suspension']},
+{id:'amggt',brand:'Mercedes-AMG',model:'AMG GT',year:2021,km:15300,hp:577,trans:'Automatic',fuel:'Petrol',body:'Coupe',price:139900,zero:3.6,engine:'4.0L twin-turbo V8',drive:'RWD',hue:35,features:['AMG Performance exhaust','Burmester audio','Nappa leather','Track Pace']},
+{id:'rs7',brand:'Audi',model:'RS7 Sportback',year:2022,km:17800,hp:591,trans:'Automatic',fuel:'Petrol',body:'Sedan',price:118500,zero:3.6,engine:'4.0L twin-turbo V8',drive:'AWD',hue:0,features:['Dynamic Plus package','Matrix LED lights','Bang & Olufsen 3D sound','Air suspension']},
+{id:'296',brand:'Ferrari',model:'296 GTB',year:2023,km:3100,hp:819,trans:'Dual-clutch',fuel:'Hybrid',body:'Coupe',price:334000,zero:2.9,engine:'3.0L V6 plug-in hybrid',drive:'RWD',hue:355,features:['Assetto Fiorano pack','Carbon wheels','Racing seats','Front lift system']},
+{id:'huracan',brand:'Lamborghini',model:'Huracán EVO',year:2021,km:11200,hp:631,trans:'Dual-clutch',fuel:'Petrol',body:'Coupe',price:289000,zero:2.9,engine:'5.2L V10',drive:'AWD',hue:52,features:['Rear-wheel steering','Lifting system','Sport exhaust','Alcantara interior']},
+{id:'supra',brand:'Toyota',model:'GR Supra 3.0',year:2024,km:2400,hp:382,trans:'Manual',fuel:'Petrol',body:'Coupe',price:66900,zero:4.1,engine:'3.0L turbo inline-six',drive:'RWD',hue:18,features:['Six-speed manual','Adaptive suspension','Limited-slip differential','JBL audio']}];
+
+// Real node names from assets/car.glb. Each is projected from world space, so markers follow the car.
+const PARTS=[
+{node:'r35_headlight_L_2012',t:'Headlights',d:'Signature GT-R lamps with LED projectors and integrated high beams.',s:'Adaptive LED'},
+{node:'r35_radiator',t:'Front grille',d:'Wide V-motion opening feeding the radiator and intercoolers.',s:'Twin intercoolers'},
+{node:'r35_wheel_05a_20x11',t:'Wheels',d:'Forged 20-inch wheels behind carbon-ceramic brakes.',s:'20 x 11 in'},
+{node:'r35_door_R',t:'Side body',d:'A clean shoulder line over an aluminium and carbon structure.',s:'Carbon fender'},
+{node:'r35_mirror_L_cf',t:'Side mirror',d:'Carbon-fibre housing, shaped to cut turbulence at speed.',s:'Carbon fibre'},
+{node:'r35_taillight_L_2017',t:'Rear lights',d:'The four circular lamps that make the R35 unmistakable at night.',s:'LED rings'},
+{node:'r35_exhaust_LW',t:'Exhaust',d:'Titanium quad-outlet system tuned for a deeper note.',s:'Titanium'},
+{node:'r35_seat_FL_2017',t:'Interior',d:'Bucket seats, leather and carbon trim inside a driver-first cabin.',s:'Recaro seats'}];
+function initScene({canvas,onLoad}){
+ const R=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+ const mobile=innerWidth<700;R.setPixelRatio(Math.min(devicePixelRatio,mobile?1.5:2));
+ R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.1;R.shadowMap.enabled=!mobile;
+ const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,.1,100);
+ scene.environment=new THREE.PMREMGenerator(R).fromScene(new RoomEnvironment(),.04).texture;scene.environmentIntensity=.55;
+ const key=new THREE.DirectionalLight(0xfff3e6,3.2);key.position.set(4,6,5);key.castShadow=true;key.shadow.mapSize.set(1024,1024);
+ const fill=new THREE.HemisphereLight(0xaab4c4,0x050505,.5),rim=new THREE.DirectionalLight(0xaec8ff,4);rim.position.set(-5,3,-4);
+ scene.add(key,fill,rim);
+ const floor=new THREE.Mesh(new THREE.CircleGeometry(9,64),new THREE.MeshStandardMaterial({color:0x08090a,roughness:.32,metalness:.6}));
+ floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
+ const g=new THREE.Group();scene.add(g);
+ const S={parts:[],base:0,ready:false,visible:true,p:0,onFrame:null};
+ function size(){const w=canvas.clientWidth,h=canvas.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;
+  const d=w/h<.8?11:w/h<1.2?8.2:6.4;cam.position.set(0,1.5,d);cam.lookAt(0,.25,0);cam.updateProjectionMatrix();}
+ addEventListener('resize',size);size();
+ const URLS=['./assets/car.glb','./assets/nissan_skyline_gtr_r35.glb','./nissan_skyline_gtr_r35.glb'],loader=new GLTFLoader();
+ const tryLoad=i=>loader.load(URLS[i],gl=>{
+  const m=gl.scene;m.traverse(o=>{if(o.isMesh){o.castShadow=!mobile;o.receiveShadow=true;}});
+  const b=new THREE.Box3().setFromObject(m),c=b.getCenter(new THREE.Vector3()),z=b.getSize(new THREE.Vector3());
+  m.position.sub(c);m.scale.setScalar(3.6/Math.max(z.x,z.z));g.add(m);
+  g.updateMatrixWorld(true);const gb=new THREE.Box3().setFromObject(m);m.position.y-=gb.min.y;floor.position.y=0;
+  g.updateMatrixWorld(true);
+  S.parts=PARTS.map(p=>{const o=m.getObjectByName(p.node);if(!o)return null;
+   const pt=new THREE.Box3().setFromObject(o).getCenter(new THREE.Vector3());g.worldToLocal(pt);return{...p,pt,a:Math.atan2(pt.x,pt.z)};}).filter(Boolean);
+  // Orient the car so the headlights face the camera at 0% scroll, then place each part's scroll stop
+  const h=S.parts[0];S.base=h?-h.a:0;
+  S.parts.forEach(p=>p.p=(((-p.a-S.base)/(2*Math.PI))%1+1)%1);
+  S.ready=true;onLoad&&onLoad();},undefined,e=>URLS[i+1]?tryLoad(i+1):console.error('GLB load failed',e));tryLoad(0);
+ const v=new THREE.Vector3();
+ S.render=()=>{if(!S.visible)return;g.rotation.y=S.base+S.p*Math.PI*2;R.render(scene,cam);
+  if(S.onFrame&&S.ready)S.onFrame(S.parts.map(p=>{v.copy(p.pt);g.localToWorld(v);const facing=v.clone().sub(g.position).normalize().dot(new THREE.Vector3(0,0,1))>.05;
+   v.project(cam);return{p,x:(v.x*.5+.5)*canvas.clientWidth,y:(-v.y*.5+.5)*canvas.clientHeight,facing};}));};
+ new IntersectionObserver(e=>S.visible=e[0].isIntersecting).observe(canvas);
+ return S;}
+
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const usd=n=>'$'+Math.round(n).toLocaleString('en-US'),km=n=>n.toLocaleString('en-US')+' km';
+const store=(k,v)=>{try{return v===undefined?JSON.parse(localStorage.getItem(k)||'[]'):localStorage.setItem(k,JSON.stringify(v))}catch{return[]}};
+let favs=store('nova-fav'),cmp=[];const F={q:'',brand:'',body:'',fuel:'',trans:'',year:0,price:350000,hp:300,sort:'new'};
+const car=id=>CARS.find(c=>c.id===id),uniq=k=>[...new Set(CARS.map(c=>c[k]))].sort();
+
+// ---- inventory ----
+const opts=(el,list,all)=>el.innerHTML=`<option value="">${all}</option>`+list.map(v=>`<option>${v}</option>`).join('');
+opts($('#f-brand'),uniq('brand'),'All brands');opts($('#f-body'),uniq('body'),'All');opts($('#f-fuel'),uniq('fuel'),'All');opts($('#f-trans'),uniq('trans'),'All');
+$('#f-year').innerHTML='<option value="0">Any</option>'+uniq('year').map(y=>`<option>${y}</option>`).join('');
+const ph=(c,label='')=>`<div class="ph" style="--h:${c.hue}"><small>${label||c.brand}</small><em>${c.model}</em></div>`;
+const card=c=>`<article class="card">${ph(c)}<div class="m"><span>${c.brand}</span><span>${c.year}</span></div><h3>${c.model}</h3>
+<div class="sp"><span>${km(c.km)}</span><span>${c.hp} hp</span><span>${c.trans}</span><span>${c.fuel}</span></div><div class="pr">${usd(c.price)}</div>
+<div class="row"><button data-act="fav" data-id="${c.id}" class="${favs.includes(c.id)?'on':''}" aria-pressed="${favs.includes(c.id)}">${favs.includes(c.id)?'Saved':'Favorite'}</button><button data-act="cmpadd" data-id="${c.id}" class="${cmp.includes(c.id)?'on':''}">${cmp.includes(c.id)?'Comparing':'Compare'}</button></div>
+<button data-act="view" data-id="${c.id}">View details</button></article>`;
+function render(){
+ const q=F.q.toLowerCase();let l=CARS.filter(c=>(!q||`${c.brand} ${c.model} ${c.year} ${c.body}`.toLowerCase().includes(q))&&(!F.brand||c.brand===F.brand)&&(!F.body||c.body===F.body)&&(!F.fuel||c.fuel===F.fuel)&&(!F.trans||c.trans===F.trans)&&c.year>=F.year&&c.price<=F.price&&c.hp>=F.hp);
+ l.sort({new:(a,b)=>b.year-a.year,lo:(a,b)=>a.price-b.price,hi:(a,b)=>b.price-a.price,hp:(a,b)=>b.hp-a.hp}[F.sort]);
+ $('#grid').innerHTML=l.map(card).join('')||'<p>No vehicles match these filters. Try widening the price or horsepower range.</p>';
+ $('#count').textContent=`${l.length} of ${CARS.length} vehicles`;$('#nf').textContent=favs.length;$('#nc').textContent=cmp.length;
+ $('#o-price').textContent=usd(F.price);$('#o-hp').textContent=F.hp+' hp';}
+const bind=(id,k,n)=>$(id).addEventListener('input',e=>{F[k]=n?+e.target.value:e.target.value;render();});
+bind('#q','q');bind('#f-brand','brand');bind('#f-body','body');bind('#f-fuel','fuel');bind('#f-trans','trans');bind('#f-year','year',1);bind('#f-price','price',1);bind('#f-hp','hp',1);bind('#sort','sort');
+$('#filters').addEventListener('reset',()=>setTimeout(()=>{Object.assign(F,{brand:'',body:'',fuel:'',trans:'',year:0,price:350000,hp:300});render();}));
+$('#ftoggle').onclick=()=>$('#filters').classList.add('open');$('#fclose').onclick=()=>$('#filters').classList.remove('open');
+
+// ---- brands + collection ----
+$('#brandrow').innerHTML=uniq('brand').map(b=>`<button data-act="brand" data-id="${b}">${b}</button>`).join('');
+$('#strip').innerHTML=CARS.filter(c=>c.hp>=500).slice(0,6).map(c=>`<div data-act="view" data-id="${c.id}" class="ph" style="--h:${c.hue}"><small>${c.brand}, ${c.hp} hp</small><em>${c.model}</em></div>`).join('');
+
+// ---- dialog: details, favorites, compare ----
+const dlg=$('#dlg'),open=h=>{$('#dbody').innerHTML=h;dlg.showModal();};
+const specs=c=>[['Engine',c.engine],['Power',c.hp+' hp'],['0 to 100 km/h',c.zero+' s'],['Transmission',c.trans],['Drivetrain',c.drive],['Fuel',c.fuel],['Mileage',km(c.km)],['Body',c.body]];
+function details(id){const c=car(id),views=['Front','Side','Rear','Interior'];
+ open(`<h3>${c.year} ${c.brand} ${c.model}</h3><div class="det"><div class="gal">${ph(c,views[0])}<div class="th">${views.map((v,i)=>`<button data-act="thumb" data-v="${v}" class="${i?'':'on'}">${v}</button>`).join('')}</div>
+${c.interactive?'<p><a href="#home" data-act="hero">Open the scroll-controlled 360 view</a></p>':''}</div>
+<div><p class="pr" style="font-size:28px;margin:0 0 10px">${usd(c.price)}</p><table>${specs(c).map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('')}</table>
+<ul class="f">${c.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+<div class="row"><button class="btn" data-act="drive" data-id="${c.id}">Request test drive</button><button data-act="fin" data-id="${c.id}">Financing</button><button data-act="contact">Contact dealer</button><button data-act="fav" data-id="${c.id}">${favs.includes(c.id)?'Saved':'Add to favorites'}</button><button data-act="cmpadd" data-id="${c.id}">Add to compare</button></div></div></div>`);}
+function favsView(){open(`<h3>Favorites</h3><div class="grid" style="margin-top:20px">${favs.map(id=>card(car(id))).join('')||'<p>Nothing saved yet. Use Favorite on any vehicle.</p>'}</div>`);}
+function cmpView(){const l=cmp.map(car);open(`<h3>Compare</h3>${l.length<2?'<p>Add at least two vehicles from the inventory to compare them.</p>':''}${l.length?`<div class="scroll"><table><tr><th></th>${l.map(c=>`<td><b>${c.brand} ${c.model}</b><br><button data-act="cmprm" data-id="${c.id}">Remove</button></td>`).join('')}</tr>
+${[['Price',c=>usd(c.price)],['Horsepower',c=>c.hp+' hp'],['0 to 100 km/h',c=>c.zero+' s'],['Engine',c=>c.engine],['Transmission',c=>c.trans],['Drivetrain',c=>c.drive],['Fuel',c=>c.fuel],['Mileage',c=>km(c.km)]].map(([n,f])=>`<tr><th>${n}</th>${l.map(c=>`<td>${f(c)}</td>`).join('')}</tr>`).join('')}</table></div>`:''}`);}
+$('#dx').onclick=()=>dlg.close();dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});
+const go=s=>{dlg.close();const t=$(s);window.lenis?lenis.scrollTo(t,{offset:-60}):t.scrollIntoView();};
+
+// ---- delegated actions ----
+document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,id=b.dataset.id;
+ if(a==='fav'){favs=favs.includes(id)?favs.filter(x=>x!==id):[...favs,id];store('nova-fav',favs);render();if($('#dbody h3')?.textContent==='Favorites')favsView();else if(b.closest('.det'))b.textContent=favs.includes(id)?'Saved':'Add to favorites';}
+ else if(a==='cmpadd'){if(cmp.includes(id))cmp=cmp.filter(x=>x!==id);else if(cmp.length<3)cmp.push(id);else alert('Compare up to three vehicles. Remove one first.');render();if(b.closest('.det'))b.textContent=cmp.includes(id)?'Added to compare':'Add to compare';}
+ else if(a==='cmprm'){cmp=cmp.filter(x=>x!==id);render();cmpView();}
+ else if(a==='view')details(id);else if(a==='favs')favsView();else if(a==='cmp')cmpView();
+ else if(a==='brand'){F.brand=id;$('#f-brand').value=id;render();go('#inventory');}
+ else if(a==='search'){$('#q').classList.toggle('on');$('#q').focus();}
+ else if(a==='thumb'){$$('.th button').forEach(x=>x.classList.toggle('on',x===b));$('.gal .ph small').textContent=b.dataset.v;}
+ else if(a==='drive'){$('#td-car').value=id;go('#drive');}else if(a==='fin'){$('#fin-car').value=id;fin(true);go('#finance');}
+ else if(a==='contact')go('#contact');else if(a==='hero')go('#stage');
+ if(b.closest('.gal')&&b.classList.contains('ph'))b.classList.toggle('z');});
+document.addEventListener('click',e=>{const p=e.target.closest('.gal .ph');if(p)p.classList.toggle('z');if(e.target.closest('#links a'))$('#links').classList.remove('open');});
+$('#burger').onclick=()=>$('#links').classList.toggle('open');
+
+// ---- finance ----
+const cars=CARS.map(c=>`<option value="${c.id}">${c.brand} ${c.model}</option>`).join('');$('#fin-car').innerHTML=cars;$('#td-car').innerHTML=cars;
+function fin(pick){if(pick)$('#fin-price').value=car($('#fin-car').value).price;
+ const P=+$('#fin-price').value,D=Math.min(+$('#fin-down').value||0,P),n=+$('#fin-term').value,r=(+$('#fin-rate').value||0)/1200,L=P-D;
+ const m=L<=0?0:r?L*r/(1-Math.pow(1+r,-n)):L/n;$('#r-m').textContent=usd(m);$('#r-t').textContent=usd(m*n+D);$('#r-i').textContent=usd(m*n-L);}
+$('#fin').addEventListener('input',e=>fin(e.target.id==='fin-car'));fin(true);
+
+// ---- test drive ----
+$('#td').addEventListener('submit',e=>{e.preventDefault();const f=e.target,d=Object.fromEntries(new FormData(f)),err={};
+ if(d.name.trim().length<2)err.name='Enter your full name.';if(!/^\S+@\S+\.\S+$/.test(d.email))err.email='Enter a valid email address.';
+ if(d.phone.replace(/\D/g,'').length<7)err.phone='Enter a phone number with at least 7 digits.';
+ if(!d.date||new Date(d.date)<new Date(new Date().toDateString()))err.date='Choose today or a future date.';if(!d.time)err.time='Choose a time.';
+ $$('.err',f).forEach(x=>x.remove());Object.entries(err).forEach(([k,m])=>f[k].insertAdjacentHTML('afterend',`<span class="err" role="alert">${m}</span>`));
+ if(Object.keys(err).length)return f.querySelector('.err').previousElementSibling.focus();
+ const c=car(d.car);f.hidden=true;$('#td-ok').hidden=false;$('#td-ok p').textContent=`${d.name.split(' ')[0]}, we have your request for the ${c.brand} ${c.model} on ${d.date} at ${d.time}. A confirmation goes to ${d.email}.`;});
+
+// ---- nav, scroll, 3D ----
+gsap.registerPlugin(ScrollTrigger);render();
+const lenis=window.lenis=new Lenis({duration:1.1});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+addEventListener('scroll',()=>$('#nav').classList.toggle('solid',scrollY>60),{passive:true});
+const S=initScene({canvas:$('#gl'),onLoad:()=>$('#loader').classList.add('done')});
+setTimeout(()=>$('#loader').classList.add('done'),12000);
+ScrollTrigger.create({trigger:'#stage',start:'top top',end:'bottom bottom',scrub:.6,onUpdate:s=>{S.p=s.progress;$('#meter').style.height=s.progress*100+'%';}});
+let sm=0;const panel=$('#panel'),dot=$('#dot'),ln=$('#line line');
+S.onFrame=pts=>{sm+=(S.p-sm)*.2;let best=null,bd=1;
+ pts.forEach(o=>{let d=Math.abs(o.p.p-S.p);d=Math.min(d,1-d);if(o.facing&&d<bd){bd=d;best=o;}});
+ if(!best||bd>.07){panel.classList.remove('on');dot.style.opacity=0;ln.setAttribute('stroke-opacity',0);return;}
+ if(panel.dataset.k!==best.p.node){panel.dataset.k=best.p.node;$('h2',panel).textContent=best.p.t;$('p',panel).textContent=best.p.d;$('span',panel).textContent=best.p.s;}
+ panel.classList.add('on');dot.style.opacity=1;dot.style.left=best.x+'px';dot.style.top=best.y+'px';
+ const r=panel.getBoundingClientRect(),vis=innerWidth>900;ln.style.display=vis?'':'none';
+ ln.setAttribute('x1',best.x);ln.setAttribute('y1',best.y);ln.setAttribute('x2',r.right<innerWidth/2?r.right:r.left);ln.setAttribute('y2',r.top+r.height/2);ln.setAttribute('stroke-opacity',1);};
+gsap.ticker.add(()=>S.render());
+</script></body></html>
